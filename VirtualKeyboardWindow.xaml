@@ -1,0 +1,230 @@
+﻿<Window
+    Closed="VirtualKeyboardWindow_OnClosed"
+    Closing="VirtualKeyboardWindow_OnClosing"
+    Height="340"
+    Loaded="MainWindow_OnLoaded"
+    Title="Экранная клавиатура"
+    Topmost="True"
+    Width="800"
+    mc:Ignorable="d"
+    x:Class="VirtualKeyboard.VirtualKeyboardWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-x:Namespace:VirtualKeyboard"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:models="clr-namespace:VirtualKeyboard.Models"
+    xmlns:virtualKeyboard="clr-namespace:VirtualKeyboard"
+    xmlns:wpf="clr-namespace:Arion.Style.AttachedProperties;assembly=Arion.Style"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Grid>
+        <Grid.Resources>
+            <Style BasedOn="{StaticResource {x:Type Button}}" TargetType="models:VButton">
+                <Setter Property="Width" Value="54" />
+                <Setter Property="Height" Value="54" />
+                <Setter Property="Padding" Value="0" />
+                <Setter Property="Margin" Value="3" />
+            </Style>
+        </Grid.Resources>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <WrapPanel Grid.Row="0">
+            <models:VButton Code="1" Content="1" />
+            <models:VButton Code="2" Content="2" />
+            <models:VButton Code="3" Content="3" />
+            <models:VButton Code="4" Content="4" />
+            <models:VButton Code="5" Content="5" />
+            <models:VButton Code="6" Content="6" />
+            <models:VButton Code="7" Content="7" />
+            <models:VButton Code="8" Content="8" />
+            <models:VButton Code="9" Content="9" />
+            <models:VButton Code="0" Content="0" />
+            <models:VButton Content="-" />
+            <models:VButton Content="=" />
+            <models:VButton
+                Code="BACKSPACE"
+                wpf:Button.Icon="Backspace"
+                wpf:Button.IconHeight="30"
+                wpf:Button.IconWidth="30" />
+        </WrapPanel>
+
+        <WrapPanel Grid.Row="1">
+            <models:VButton
+                Code="q"
+                Content="Q"
+                x:Name="BtnQ" />
+            <models:VButton
+                Code="w"
+                Content="W"
+                x:Name="BtnW" />
+            <models:VButton
+                Code="e"
+                Content="E"
+                x:Name="BtnE" />
+            <models:VButton
+                Code="r"
+                Content="R"
+                x:Name="BtnR" />
+            <models:VButton
+                Code="t"
+                Content="T"
+                x:Name="BtnT" />
+            <models:VButton
+                Code="y"
+                Content="Y"
+                x:Name="BtnY" />
+            <models:VButton
+                Code="u"
+                Content="U"
+                x:Name="BtnU" />
+            <models:VButton
+                Code="i"
+                Content="I"
+                x:Name="BtnI" />
+            <models:VButton
+                Code="o"
+                Content="O"
+                x:Name="BtnO" />
+            <models:VButton
+                Code="p"
+                Content="P"
+                x:Name="BtnP" />
+            <models:VButton
+                Code="OEM4"
+                Content="["
+                x:Name="BtnOpenBracket" />
+            <models:VButton
+                Code="OEM6"
+                Content="]"
+                x:Name="BtnCloseBracket" />
+            <models:VButton
+                Click="ButtonBase_OnClick"
+                Code="ENTER"
+                Content="Ввод" />
+        </WrapPanel>
+        <WrapPanel Grid.Row="2">
+            <models:VButton
+                Code="a"
+                Content="A"
+                x:Name="BtnA" />
+            <models:VButton
+                Code="s"
+                Content="S"
+                x:Name="BtnS" />
+            <models:VButton
+                Code="d"
+                Content="D"
+                x:Name="BtnD" />
+            <models:VButton
+                Code="f"
+                Content="F"
+                x:Name="BtnF" />
+            <models:VButton
+                Code="g"
+                Content="G"
+                x:Name="BtnG" />
+            <models:VButton
+                Code="h"
+                Content="H"
+                x:Name="BtnH" />
+            <models:VButton
+                Code="j"
+                Content="J"
+                x:Name="BtnJ" />
+            <models:VButton
+                Code="k"
+                Content="K"
+                x:Name="BtnK" />
+            <models:VButton
+                Code="l"
+                Content="L"
+                x:Name="BtnL" />
+            <models:VButton
+                Code="OEM1"
+                Content=";"
+                x:Name="BtnSeparator" />
+            <models:VButton
+                Code="OEM7"
+                Content="'"
+                x:Name="BtnQuotes" />
+            <models:VButton
+                Code="CAPSLOCK"
+                wpf:Button.Icon="CapsLock"
+                wpf:Button.IconHeight="30"
+                wpf:Button.IconWidth="30" />
+            <models:VButton
+                Code="LCTRL c"
+                wpf:Button.Icon="ContentCopy"
+                wpf:Button.IconHeight="30"
+                wpf:Button.IconWidth="30" />
+        </WrapPanel>
+        <WrapPanel Grid.Row="3">
+            <models:VButton
+                Code="z"
+                Content="Z"
+                x:Name="BtnZ" />
+            <models:VButton
+                Code="x"
+                Content="X"
+                x:Name="BtnX" />
+            <models:VButton
+                Code="c"
+                Content="C"
+                x:Name="BtnC" />
+            <models:VButton
+                Code="v"
+                Content="V"
+                x:Name="BtnV" />
+            <models:VButton
+                Code="b"
+                Content="B"
+                x:Name="BtnB" />
+            <models:VButton
+                Code="n"
+                Content="N"
+                x:Name="BtnN" />
+            <models:VButton
+                Code="m"
+                Content="M"
+                x:Name="BtnM" />
+            <models:VButton
+                Code="COMMA"
+                Content=","
+                x:Name="BtnComma" />
+            <models:VButton
+                Code="PERIOD"
+                Content="."
+                x:Name="BtnPeriod" />
+            <models:VButton Code="OEM2" Content="/" />
+            <models:VButton Code="OEM5" Content="\" />
+            <models:VButton
+                Code="LCTRL a"
+                wpf:Button.Icon="SelectAll"
+                wpf:Button.IconHeight="30"
+                wpf:Button.IconWidth="30" />
+            <models:VButton
+                Code="LCTRL v"
+                wpf:Button.Icon="ContentPaste"
+                wpf:Button.IconHeight="30"
+                wpf:Button.IconWidth="30" />
+        </WrapPanel>
+        <WrapPanel Grid.Row="4">
+            <models:VButton
+                Code="SPACE"
+                Content="ПРОБЕЛ"
+                HorizontalAlignment="Left"
+                Width="716" />
+            <models:VButton
+                Code="LSHIFT LALT"
+                Margin="3,0,0,0"
+                wpf:Button.Icon="Translate"
+                wpf:Button.IconHeight="30"
+                wpf:Button.IconWidth="30" />
+        </WrapPanel>
+    </Grid>
+</Window>
