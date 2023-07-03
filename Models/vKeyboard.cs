@@ -25,7 +25,7 @@ namespace VirtualKeyboard.Models {
         #region Словарь кодов клавиатуры - ПРИМЕЧАНИЕ: Возможно, удалить и сделать его частью XML
         //http://msdn.microsoft.com/en-us/library/windows/desktop/dd375731%28v=vs.85%29.aspx
         //http://www.kbdedit.com/manual/low_level_vk_list.html
-        private static Dictionary<string, KeyItem> KeyDict = new Dictionary<string, KeyItem>(){
+        private static readonly Dictionary<string, KeyItem> KeyDict = new Dictionary<string, KeyItem>(){
             {"LSHIFT",new KeyItem(0xA0,true)}   ,{"RSHIFT",new KeyItem(0xA1,true)}  ,{"SHIFT",new KeyItem(0x10,true)}
             ,{"ALT",new KeyItem(0x12,true)}     ,{"LALT",new KeyItem(0xA4,true)}    ,{"RALT",new KeyItem(0xA5,true)}
             ,{"LCTRL",new KeyItem(0xA2,true)}   ,{"RCTRL",new KeyItem(0xA3,true)}
@@ -84,11 +84,7 @@ namespace VirtualKeyboard.Models {
         };
         #endregion
 
-        private static bool _mIsShiftActive;
-        public static bool IsShiftActive {
-            set => _mIsShiftActive = value;
-            get => _mIsShiftActive;
-        }
+        public static bool IsShiftActive { get; set; }
 
         #region Constants
         private const int KEYEVENTF_EXTENDEDKEY = 0x1;
@@ -109,7 +105,7 @@ namespace VirtualKeyboard.Models {
         {
             uint scanCode = MapVirtualKey((uint)key, 0);
 
-            keybd_event((byte)key, (byte)scanCode, up ? (uint)KEYEVENTF_KEYUP : (uint)KEYEVENTF_KEYDOWN, (UIntPtr)0);
+            keybd_event((byte)key, (byte)scanCode, up ? KEYEVENTF_KEYUP : (uint)KEYEVENTF_KEYDOWN, (UIntPtr)0);
         }
 
         public static void ProcessCommand(KeyboardCommand kbCmd) {

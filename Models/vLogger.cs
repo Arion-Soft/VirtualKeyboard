@@ -8,18 +8,18 @@ namespace VirtualKeyboard.Models {
             try {
                 int i = 0;
                 do {
-                    Console.WriteLine("ERROR " + errCode + " : " + e.Message + " : " + e.StackTrace + "\n\r" + custom);
-                    FileAppend(String.Format("<err code=\"{0}\" dt=\"{1}\" ver=\"{5}\"><msg>{2}</msg><trace>{3}</trace><custom>{4}</custom></err>"
-                        , (e.InnerException != null || i > 0) ? errCode + "." + i.ToString() : errCode
+                    Console.WriteLine($"ERROR {errCode} : {e.Message} : {e.StackTrace}\n\r{custom}");
+                    FileAppend(string.Format("<err code=\"{0}\" dt=\"{1}\" ver=\"{5}\"><msg>{2}</msg><trace>{3}</trace><custom>{4}</custom></err>"
+                        , e.InnerException != null || i > 0 ? errCode + "." + i : errCode
                         , GetDate()
                         , EscapeXml(e.Message)
                         , EscapeXml(e.StackTrace)
                         , EscapeXml(custom)
-                        , System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.ToString()
+                        , System.Reflection.Assembly.GetExecutingAssembly().GetName().Version
                     ));
                     i++; e = e.InnerException;
                 } while(e != null);
-            } catch(Exception ex) {
+            } catch(Exception) {
                 System.Windows.MessageBox.Show(String.Format("ERROR ON SAVING ERROR : <err code=\"{0}\" dt=\"{1}\"><msg>{2}</msg><trace>{3}</trace><custom>{4}</custom></err>"
                     , errCode
                     , GetDate()
@@ -32,7 +32,7 @@ namespace VirtualKeyboard.Models {
 
         #region Support Function
             public static string GetLogFilePath() {
-                string rtn = System.IO.Path.GetDirectoryName(System.Diagnostics.Process.GetCurrentProcess().MainModule?.FileName);
+                string rtn = Path.GetDirectoryName(System.Diagnostics.Process.GetCurrentProcess().MainModule?.FileName);
                 if(!rtn.EndsWith("\\")) rtn += "\\";
                 return rtn + "error_log.txt";
             }//func
@@ -56,8 +56,9 @@ namespace VirtualKeyboard.Models {
                         System.Windows.MessageBox.Show("ERROR ON SAVING ERROR : " + txt + " :: " + ex.Message);
                         stat = false;
                     }
-                } finally {
-                    if(sw != null) { sw.Close(); sw = null; }
+                } finally
+                {
+                    sw?.Close();
                 }
 
                 return stat;

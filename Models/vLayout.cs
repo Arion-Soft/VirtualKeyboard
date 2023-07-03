@@ -8,9 +8,7 @@ namespace VirtualKeyboard.Models{
 	public abstract class VLayout{
         public static readonly FontFamily MIconFont = new FontFamily(new Uri("pack://application:,,,/fonts/#FontAwesome"), "./#FontAwesome");
 
-		/// <summary>
-		/// Загрузка слоя XML
-		/// </summary>
+		/// <summary> Загрузка слоя XML </summary>
 		/// <param name="fName"></param>
 		/// <param name="uiGrid"></param>
 		/// <param name="uiWindow"></param>
